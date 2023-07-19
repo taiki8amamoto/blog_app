@@ -1,2 +1,26 @@
-<h1>Blogs#new</h1>
-<p>Find me in app/views/blogs/new.html.erb</p>
+<h2>ブログを投稿する</h2>
+
+<%= form_with( model: @blog, local: true, url: confirm_blogs_path ) do |form| %>
+  <% if @blog.errors.any? %>
+  <div id="error_expanation">
+    <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+    <ul>
+
+    <% @blog.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="blog_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="blog_content">
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+  </div>
+  <%= form.submit "確認画面へ" %>
+
+<% end %>
