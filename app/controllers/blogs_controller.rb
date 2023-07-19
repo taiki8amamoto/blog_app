@@ -37,11 +37,14 @@ class BlogsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def confirm
     @blog = Blog.new(blog_params)
+  end
+  
+  def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
+    redirect_to blogs_path, notice: 'ブログを削除しました。'
   end
 
   private
